@@ -1,56 +1,73 @@
-<div class="container mt-5">
-  <div *ngFor="let receita of receitas" class="card shadow p-4 mb-5" >
-    <div class="row">
-      <!-- Imagem -->
-      <div class="col-md-4">
-        <img [src]="receita.imagemReceita" class="img-fluid rounded mb-3" alt="Imagem da Receita" />
-      </div>
-
-       <!-- Tags no canto superior direito -->
-      <div class="sentimentos position-absolute top-0 end-0 p-0">
-        <span *ngFor="let sentimento of receita.sentimentoReceita" class="badge bg-info text-dark me-1">
-          {{ sentimento }}
+<div class="container-fluid mt-5">
+  <h1 class="text-center mb-4">Lista Receitas</h1>
+  <div *ngFor="let receita of receitas; let i = index" class="card shadow mb-4 mx-auto" style="max-width: 95%;">
+    <!-- Cabeçalho clicável -->
+    <div class="card-header d-flex justify-content-between align-items-center" (click)="receita.expande = !receita.expande" style="cursor: pointer;">
+      <h4 class="mb-0">{{ receita.nomeReceita }}</h4>
+      <div class="d-flex">
+        <div class=" d-flex">
+          <div class="bg-sentimentos gap-5">
+            <span *ngFor="let sentimento of receita.sentimentoReceita" class="badge bg-sentimentos text-dark me-1">
+            {{ sentimento }}
+          </span>
+        </div>
+          
+        </div>
+        <span class="ps-3">
+          {{ receita.expande ? '▲' : '▼' }}
         </span>
       </div>
 
-      <!-- Conteúdo -->
-      <div class="col-md-8">
-        <h2 class="mb-3">{{ receita.nomeReceita }}</h2>
 
-        <div class="row">
-          <!-- Ingredientes -->
-          <div class="col-sm-6">
-            <h5 class="text-uppercase fw-bold">Ingredientes</h5>
-            <ul>
-              <li *ngFor="let preparo of receita.preparos">
-                <ul>
-                  <li *ngFor="let ingrediente of preparo.ingredientes">
-                    {{ ingrediente }}
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
 
-          <!-- Modo de preparo -->
-          <div class="col-sm-6">
-            <h5 class="text-uppercase fw-bold">Modo de Preparo</h5>
-            <ol>
-              <li *ngFor="let preparo of receita.preparos">
-                {{ preparo.modoPreparo }}
-              </li>
-            </ol>
-          </div>
+    </div>
+
+    <!-- Corpo que expande -->
+    <div class="card-body" [hidden]="!receita.expande">
+      <div class="row">
+        <!-- Imagem -->
+        <div class="col-md-4">
+          <img [src]="receita.imagemReceita" class="img-fluid rounded mb-3" alt="Imagem da Receita" />
         </div>
 
-        <!-- Rodapé -->
-        <div class="mt-4 d-flex justify-content-between border-top pt-3">
-          <div><strong>Tempo:</strong> {{ receita.tempoPreparo }}</div>
-          <div><strong>Rende ate:</strong> {{ receita.qtdeFinal }} porções</div>
-        </div>
+        <!-- Tags no canto superior direito -->
+      
 
-        <div *ngIf="receita.observacoesUsuario" class="mt-3 alert alert-warning">
-          <strong>Observação:</strong> {{ receita.observacoesUsuario }}
+        <!-- Conteúdo -->
+        <div class="col-md-8">
+          <div class="row">
+            <!-- Ingredientes -->
+            <div class="col-sm-6">
+              <h5 class="text-uppercase fw-bold">Ingredientes</h5>
+              <ul>
+                <li *ngFor="let preparo of receita.preparos">
+                  <ng-container *ngFor="let ingrediente of preparo.ingredientes">
+                    <li>{{ ingrediente }}</li>
+                  </ng-container>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Modo de preparo -->
+            <div class="col-sm-6">
+              <h5 class="text-uppercase fw-bold">Modo de Preparo</h5>
+              <ol>
+                <li *ngFor="let preparo of receita.preparos">
+                  {{ preparo.modoPreparo }}
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Rodapé -->
+          <div class="mt-4 d-flex justify-content-between border-top pt-3">
+            <div><strong>Tempo:</strong> {{ receita.tempoPreparo }}</div>
+            <div><strong>Rende até:</strong> {{ receita.qtdeFinal }} porções</div>
+          </div>
+
+          <div *ngIf="receita.observacoesUsuario" class="mt-3 alert alert-warning">
+            <strong>Observação:</strong> {{ receita.observacoesUsuario }}
+          </div>
         </div>
       </div>
     </div>

@@ -75,5 +75,15 @@
     top: 16px;
     right: 16px;
     z-index: 10;
+    
   }
-  
+
+.bg-sentimentos {
+  background-color: aquamarine !important;
+  color: #00796b !important;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  display: inline-block;
+}
+

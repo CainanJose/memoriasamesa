@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true, // 👈 isso aqui é obrigatório
   imports: [CommonModule], // 👈 importa CommonModule aqui também
   templateUrl: './lista-receitas.component.html',
+  styleUrl:'./lista-receitas.component.css'
 })
 export class ListaReceitasComponent implements OnInit {
   receitas: any[] = [];
