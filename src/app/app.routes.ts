@@ -1,8 +1,19 @@
 import { Routes } from '@angular/router';
 import { ListaReceitasComponent } from './lista-receitas/lista-receitas.component';
+import { LoginComponent } from './login/login.component'; // importar o componente
+import { CadastroComponent } from './cadastro/cadastro.component';
+
 export const routes: Routes = [
-    {
-        path: '',
-        component: ListaReceitasComponent
-      }
+  {
+    path: 'listareceitas',
+    component: ListaReceitasComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'cadastro',
+    component:CadastroComponent
+  }
 ];

@@ -4,7 +4,7 @@ import { ListaReceitasComponent } from "./lista-receitas/lista-receitas.componen
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ListaReceitasComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ReceitasService } from '../services/receitas.service';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-lista-receitas',
   standalone: true, // 👈 isso aqui é obrigatório
-  imports: [CommonModule], // 👈 importa CommonModule aqui também
+  imports: [CommonModule, NavbarComponent], // 👈 importa CommonModule aqui também
   templateUrl: './lista-receitas.component.html',
   styleUrl:'./lista-receitas.component.css'
 })

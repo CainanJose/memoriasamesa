@@ -2,7 +2,14 @@
     text-align: center;
     margin-bottom: 20px;
     font-size: 28px;
-    color: #4caf50;
+    color: #E53935;
+  }
+  .titulo-ativo {
+    color: #ffffff; /* cor quando expandido */
+  }
+
+  .titulo2 {
+    color: #E53935;
   }
   
   .receitas-container {
@@ -33,10 +40,13 @@
   .conteudo {
     padding: 16px;
   }
-  
+  .descricaotext{
+    font-style: italic;
+    color: #030303;
+  }
   .descricao {
     font-style: italic;
-    color: #555;
+    color: #E53935;
   }
   
   .sentimentos {
@@ -64,9 +74,9 @@
   
   .observacoes {
     margin-top: 12px;
-    background-color: #fff8e1;
+    background-color: #FFD3CE;
     padding: 8px;
-    border-left: 4px solid #ffb300;
+    border-left: 4px solid #FFD3CE;
     border-radius: 6px;
   }
   
@@ -79,11 +89,18 @@
   }
 
 .bg-sentimentos {
-  background-color: aquamarine !important;
-  color: #00796b !important;
+  background-color: #E53935 !important;
+  color: #ffffff !important;
   padding: 4px 8px;
   border-radius: 12px;
   font-size: 12px;
   display: inline-block;
 }
 
+.card-header {
+  background-color: #FFD3CE; /* cor para todos por padrão */
+}
+
+.header-ativo {
+  background-color: #f8a096; /* cor quando estiver expandido */
+}
