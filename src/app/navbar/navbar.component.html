@@ -1,43 +1,26 @@
-<div class="general" style="background-color: #ffffff; height: 100%;">
-  <div
-    style="height: 6em; overflow: hidden; display: flex; justify-content: space-between; background-color: #ffcec8; padding: 2em; box-sizing: border-box; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
-    
-    <!-- Logo -->
-    <div class="logo-wrapper" style="margin-top: -2em;">
-      <img src="assets/1.svg" alt="Descrição do SVG" width="280em" height="280em">
-    </div>
+<div class="navbar-container">
+  <!-- Logo à esquerda -->
+  <div class="logo-wrapper">
+    <img src="assets/1.svg" alt="Memórias à Mesa" />
+  </div>
 
-    <!-- Menu central -->
-    <div style="font-size: 1.3rem; color: #e12c2c; display: flex; justify-content: row; gap: 2em;">
-      <span> HOME</span>
-      <span [routerLink]="['/listareceitas']" style="cursor: pointer;" > RECEITAS</span>
-    </div>
+  <!-- Menu central → SEMPRE visível -->
+  <div class="menu-links">
+    <span class="link">HOME</span>
+    <span class="link" [routerLink]="['/listareceitas']">RECEITAS</span>
+  </div>
 
-    <!-- Botões -->
-    <div style="font-size: 1.3rem; color: #e12c2c; display: flex; justify-content: row; gap: 0.5em;">
+  <!-- Botões à direita → só esconder os botões, não a barra inteira -->
+  <div class="menu-buttons">
+    <!-- Quando NÃO logado e NÃO em login/cadastro -->
+    <ng-container *ngIf="!esconderBotoes() && !tokenValido">
+      <button class="btn btn-white" (click)="irParaLogin()">Login</button>
+      <button class="btn btn-red" (click)="irParaCriar()">Cadastrar</button>
+    </ng-container>
 
-      <!-- BOTÃO LOGIN -->
-      <div
-      *ngIf="!esconderBotoes()" style="width: 5em; display: flex; justify-content: center; background-color: white; border: 0.5px solid gray; padding: 0.5em; box-sizing: border-box; align-items: center; border-radius: 0.5em; box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);">
-        <button
-          (click)="irParaLogin()"
-          type="button"
-          style="background: none; border: none; color: #e12c2c; font-size: 1.3rem; cursor: pointer;">
-          Login
-        </button>
-      </div>
-
-      <!-- BOTÃO CRIAR -->
-      <div *ngIf="!esconderBotoes()"
-        style="width: 5em; display: flex; justify-content: center; background-color: #e12c2c; border: 0.5px solid gray; padding: 0.5em; box-sizing: border-box; align-items: center; border-radius: 0.5em; box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);">
-        <button
-          (click)="irParaCriar()"
-          type="button"
-          style="background: none; border: none; color: white; font-size: 1.3rem; cursor: pointer;">
-          Cadastrar
-        </button>
-      </div>
-
-    </div>
+    <!-- Quando logado -->
+    <ng-container *ngIf="tokenValido">
+      <button class="btn btn-white" (click)="logout()">Sair</button>
+    </ng-container>
   </div>
 </div>

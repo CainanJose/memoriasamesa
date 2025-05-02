@@ -1,9 +1,10 @@
 .tela-cadastro {
   display: flex;
-  width: 80%;
-  max-width: 900px;
+  width: 85%;
+  max-width: 1000px;
+  height: 550px;
   margin: 60px auto;
-  height: 500px;
+  background: #ffffff;
   box-shadow: 0 10px 40px rgba(0,0,0,0.1);
   border-radius: 20px;
   overflow: hidden;
@@ -78,6 +79,20 @@ button:disabled {
 }
 
 .mensagem {
-  color: green;
+  color: rgb(165, 3, 3);
   margin-top: 10px;
+  text-align: center;
+}
+
+.trocar {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  text-align: center;
+  color: #666;
+}
+
+.trocar span {
+  color: #e12c2c;
+  font-weight: bold;
+  cursor: pointer;
 }

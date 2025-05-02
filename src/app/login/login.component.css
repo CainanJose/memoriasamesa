@@ -1,44 +1,96 @@
-.login-container {
-    max-width: 400px;
-    margin: 80px auto;
-    background-color: #ffe0e0;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: center;
-  }
-  
-  .login-container h2 {
-    margin-bottom: 20px;
-    color: #c62828;
-  }
-  
-  .login-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .login-container button {
-    width: 100%;
-    background-color: #c62828;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .login-container button:hover {
-    background-color: #b71c1c;
-  }
-  
-  .erro {
-    color: red;
-    margin-top: 10px;
-  }
-  
+.login-layout {
+  display: flex;
+  width: 85%;
+  max-width: 1000px;
+  height: 550px;
+  margin: 60px auto;
+  background: #ffffff;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Lado com ilustração ou mensagem */
+.login-imagem {
+  flex: 1;
+  background: linear-gradient(to top right, #ffcec8, #f8a096);
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-imagem h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.login-formulario {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-formulario h2 {
+  margin-bottom: 1.5rem;
+  color: #c62828;
+  font-size: 26px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #f06292;
+  outline: none;
+}
+
+button {
+  padding: 12px;
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #c2185b;
+}
+
+button:disabled {
+  background-color: #e0e0e0;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.mensagem {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+.trocar {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  text-align: center;
+  color: #666;
+}
+
+.trocar span {
+  color: #e12c2c;
+  font-weight: bold;
+  cursor: pointer;
+}
+

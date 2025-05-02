@@ -1,1 +1,24 @@
-<p>login works!</p>
+<app-navbar></app-navbar>
+
+<div class="login-layout">
+  <!-- Lado com imagem ou ilustração -->
+  <div class="login-imagem">
+    <h1>Bem-vindo(a) de volta!</h1>
+    <p>Faça login para continuar</p>
+  </div>
+  
+  <!-- Lado com o formulário -->
+  <div class="login-formulario">
+    <h2>Login</h2>
+    <form (ngSubmit)="login()" #form="ngForm">
+      <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required />
+      <input type="password" name="password" [(ngModel)]="password" placeholder="Senha" required />
+      <button type="submit" [disabled]="!form.valid">Entrar</button>
+      <p class="trocar">
+        Não tem conta?
+        <span (click)="irParaCadastro()">Cadastre-se aqui</span>
+      </p>      
+    </form>
+    <p *ngIf="mensagem" class="mensagem">{{ mensagem }}</p>
+  </div>
+</div>

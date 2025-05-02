@@ -33,6 +33,9 @@ export class CadastroComponent {
   senhaValida(): boolean {
     return this.validacao.validarSenha(this.senha);
   }
+  irParaLogin() {
+    this.router.navigate(['/login']);
+  }
   
 
   cadastrar() {
@@ -46,7 +49,7 @@ export class CadastroComponent {
       console.log('Enviando dados para o backend:', dados);
       this.usuarioService.cadastrar(dados).subscribe({
         next: () => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/login'], { state: { sucessoCadastro: true } });
         },
         error: (erro) => {
           const msg = erro?.error?.detail || '';

@@ -21,6 +21,10 @@
       </div>
 
       <button type="submit" [disabled]="!form.valid || !emailValido() || !senhaValida()">Cadastrar</button>
+      <p class="trocar">
+        Já tem conta?
+        <span (click)="irParaLogin()">Faça login</span>
+      </p>      
     </form>
 
     <p *ngIf="mensagem" class="mensagem">{{ mensagem }}</p>

@@ -1,0 +1,75 @@
+.navbar-container {
+    background-color: #ffcec8;
+    height: 6em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em 4em;
+    position: relative;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* CENTRALIZA O MENU */
+  .menu-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    color: #e12c2c;
+    display: flex;
+    gap: 2em;
+  }
+  
+  .menu-links .link {
+    cursor: pointer;
+  }
+  
+  .menu-buttons {
+    display: flex;
+    gap: 0.5em;
+  }
+  
+  .logo-wrapper img {
+    width: 240px;
+    height: auto;
+    margin-top: 9em;
+  }
+  
+  .menu-links {
+    font-size: 1.3rem;
+    color: #e12c2c;
+    display: flex;
+    gap: 2em;
+  }
+  
+  .menu-links .link {
+    cursor: pointer;
+  }
+  
+  .menu-buttons {
+    display: flex;
+    gap: 0.5em;
+  }
+  
+  .btn {
+    font-size: 1.3rem;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-white {
+    background-color: white;
+    color: #e12c2c;
+    border: 0.5px solid gray;
+  }
+  
+  .btn-red {
+    background-color: #e12c2c;
+    color: white;
+    border: 0.5px solid gray;
+  }
+  
