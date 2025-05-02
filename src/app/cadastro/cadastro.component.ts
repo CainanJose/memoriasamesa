@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../services/usuario.service';
 import { Router } from '@angular/router';
 import { NavbarComponent } from "../navbar/navbar.component";
+import { ValidacaoService } from '../services/validacao.service';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [FormsModule, CommonModule,NavbarComponent],
+  imports: [FormsModule, CommonModule, NavbarComponent],
   templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css']
+  styleUrls: ['./cadastro.component.css'],
+  providers: [ValidacaoService] // INJETADO
 })
 export class CadastroComponent {
   nome = '';
@@ -18,22 +20,27 @@ export class CadastroComponent {
   senha = '';
   mensagem = '';
 
-  constructor(private usuarioService: UsuarioService,private router: Router) {}
+  constructor(
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private validacao: ValidacaoService // INJETADO
+  ) {}
 
   emailValido(): boolean {
-    return /^[\w.-]+@(gmail|outlook)\.com$/.test(this.email);
+    return this.validacao.validarEmail(this.email);
   }
 
   senhaValida(): boolean {
-    return /^[A-Z][\w\d@$!%*?&]{7,}$/.test(this.senha);
+    return this.validacao.validarSenha(this.senha);
   }
+  
 
   cadastrar() {
     if (this.emailValido() && this.senhaValida()) {
       const dados = {
-        username: this.nome,     
+        username: this.nome,
         email: this.email,
-        password: this.senha      
+        password: this.senha
       };
 
       console.log('Enviando dados para o backend:', dados);
@@ -48,8 +55,7 @@ export class CadastroComponent {
           } else {
             this.mensagem = 'Erro ao cadastrar. Tente novamente.';
           }
-        
-          // ⏱️ torna a mensagem temporária por 4 segundos
+
           setTimeout(() => {
             this.mensagem = '';
           }, 4000);

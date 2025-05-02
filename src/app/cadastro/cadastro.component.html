@@ -1,20 +1,28 @@
 <app-navbar></app-navbar>
-<div class="cadastro-container">
+
+<div class="tela-cadastro">
+  <!-- Lado esquerdo com imagem -->
+  <div class="lado-imagem">
+    <h1>Bem-vindo(a)!</h1>
+    <p>Estamos felizes em te ver por aqui</p>
+  </div>
+
+  <!-- Lado direito com formulário -->
+  <div class="lado-formulario">
     <h2>Criar Conta</h2>
     <form (ngSubmit)="cadastrar()" #form="ngForm">
-      <input type="text" name="nome" [(ngModel)]="nome" placeholder="Nome completo" required>
-  
-      <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required>
-      <div *ngIf="email && !emailValido()" class="erro"> Use um email &#64;gmail.com ou &#64;outlook.com</div>
-  
-      <input type="password" name="senha" [(ngModel)]="senha" placeholder="Senha" required>
+      <input type="text" name="nome" [(ngModel)]="nome" placeholder="Nome completo" required />
+      <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required />
+      <div *ngIf="email && !emailValido()" class="erro">Use um email válido</div>
+
+      <input type="password" name="senha" [(ngModel)]="senha" placeholder="Senha" required />
       <div *ngIf="senha && !senhaValida()" class="erro">
-        A senha deve ter no mínimo 8 caracteres e começar com letra maiúscula.
+        A senha deve começar com letra maiúscula e ter pelo menos 8 caracteres.
       </div>
-  
+
       <button type="submit" [disabled]="!form.valid || !emailValido() || !senhaValida()">Cadastrar</button>
     </form>
-  
+
     <p *ngIf="mensagem" class="mensagem">{{ mensagem }}</p>
   </div>
-  
+</div>

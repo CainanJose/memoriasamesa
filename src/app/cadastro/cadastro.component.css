@@ -1,54 +1,83 @@
-.cadastro-container {
-    max-width: 400px;
-    margin: 80px auto;
-    background-color: #ffe0e0;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: center;
-  }
-  
-  .cadastro-container h2 {
-    margin-bottom: 20px;
-    color: #c62828;
-  }
-  
-  .cadastro-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .cadastro-container button {
-    width: 100%;
-    background-color: #c62828;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .cadastro-container button:disabled {
-    background-color: #e0e0e0;
-    color: #aaa;
-    cursor: not-allowed;
-  }
-  
-  .erro {
-    color: red;
-    font-size: 0.85rem;
-    margin-top: -8px;
-    margin-bottom: 8px;
-  }
-  
-  .mensagem {
-    margin-top: 10px;
-    color: green;
-  }
-  
+.tela-cadastro {
+  display: flex;
+  width: 80%;
+  max-width: 900px;
+  margin: 60px auto;
+  height: 500px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Lado esquerdo com imagem ou cor */
+.lado-imagem {
+  flex: 1;
+  background: linear-gradient(to top right, #ffcec8, #f8a096);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.lado-imagem h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.lado-formulario {
+  flex: 1;
+  background: #fff;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lado-formulario h2 {
+  margin-bottom: 1.5rem;
+  color: #c62828;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 12px;
+  background-color: #c62828;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #a91d1d;
+}
+
+button:disabled {
+  background-color: #e0e0e0;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.erro {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.mensagem {
+  color: green;
+  margin-top: 10px;
+}
