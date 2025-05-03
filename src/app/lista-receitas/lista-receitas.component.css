@@ -104,3 +104,26 @@
 .header-ativo {
   background-color: #f8a096; /* cor quando estiver expandido */
 }
+
+.filtro-emocao {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filtro-select {
+  border: 1px solid #E53935;
+  border-radius: 8px;
+  padding: 6px 10px;
+  background-color: #E53935;
+  color: #ffffff;
+  font-weight: bold;
+  width: auto;
+  min-width: 150px;
+}
+
+.filtro-select:focus {
+  outline: none;
+  border-color: #f44336;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
+}
