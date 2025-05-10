@@ -58,4 +58,14 @@ export class NavbarComponent {
     });
     this.fecharMenuLateral();
   }
+  menuHamburguerAberto = false;
+
+abrirMenuHamburguer() {
+  this.menuHamburguerAberto = true;
+}
+
+fecharMenuHamburguer() {
+  this.menuHamburguerAberto = false;
+}
+
 }

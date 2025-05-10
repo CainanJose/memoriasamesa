@@ -4,39 +4,44 @@
     <img src="assets/1.svg" alt="Memórias à Mesa" />
   </div>
 
-  <!-- Menu central → SEMPRE visível -->
-  <div class="menu-links">
-    <span class="link">HOME</span>
-    <span class="link" [routerLink]="['/listareceitas']">RECEITAS</span>
-    <span class="link" [routerLink]="['/cadastroreceita']">CADASTRAR RECEITA</span>
+  <!-- Menu central (visível em desktop) -->
+  <div class="menu-links desktop-only">
+    <span class="link" routerLink="/">HOME</span>
+    <span class="link" routerLink="/listareceitas">RECEITAS</span>
+    <span class="link" routerLink="/cadastroreceita">CADASTRAR RECEITA</span>
   </div>
 
-  <!-- Botões à direita → só esconder os botões, não a barra inteira -->
+  <!-- Botões à direita -->
   <div class="menu-buttons">
-    <!-- Quando NÃO logado e NÃO em login/cadastro -->
+    <!-- Hambúrguer visível apenas em mobile -->
+    <button class="btn btn-white mobile-only" (click)="abrirMenuHamburguer()">☰</button>
+
+    <!-- Quando NÃO logado -->
     <ng-container *ngIf="!esconderBotoes() && !tokenValido">
-      <button class="btn btn-white" (click)="irParaLogin()">Login</button>
-      <button class="btn btn-red" (click)="irParaCriar()">Cadastrar</button>
-      
+      <button class="btn btn-white desktop-only" (click)="irParaLogin()">Login</button>
+      <button class="btn btn-red desktop-only" (click)="irParaCriar()">Cadastrar</button>
     </ng-container>
 
     <!-- Quando logado -->
     <ng-container *ngIf="tokenValido">
-      <span class="link" (click)="logout()">SAIR</span>
-    </ng-container>
-    
-    <!-- Menu hambúrguer (visível só se logado) -->
-    <ng-container *ngIf="tokenValido">
-      <button class="btn btn-outline-secondary" (click)="abrirMenuLateral()">
-        ☰
-      </button>
-            <!-- Menu lateral -->
-      <div class="menu-lateral" [class.aberto]="menuAberto">
-        <span class="closebtn" (click)="fecharMenuLateral()">×</span>
-        <a routerLink="/favoritos" (click)="fecharMenuLateral()">❤️ Favoritos</a>
-        <!-- Aqui você pode adicionar mais itens no futuro -->
-      </div>
+      <span class="link desktop-only" (click)="logout()">SAIR</span>
     </ng-container>
 
+    <!-- Menu lateral para mobile -->
+    <div class="menu-lateral" [class.aberto]="menuHamburguerAberto">
+      <span class="closebtn" (click)="fecharMenuHamburguer()">×</span>
+      <a routerLink="/" (click)="fecharMenuHamburguer()">🏠 Home</a>
+      <a routerLink="/listareceitas" (click)="fecharMenuHamburguer()">📖 Receitas</a>
+      <a routerLink="/cadastroreceita" (click)="fecharMenuHamburguer()">➕ Nova Receita</a>
+
+      <!-- Botões de login ou sair no menu mobile -->
+      <ng-container *ngIf="!tokenValido">
+        <a (click)="irParaLogin()">🔐 Login</a>
+        <a (click)="irParaCriar()">📝 Cadastrar</a>
+      </ng-container>
+      <ng-container *ngIf="tokenValido">
+        <a (click)="logout()">🚪 Sair</a>
+      </ng-container>
+    </div>
   </div>
 </div>
