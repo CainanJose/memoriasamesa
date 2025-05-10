@@ -11,9 +11,6 @@
   
   /* CENTRALIZA O MENU */
   .menu-links {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     font-size: 1.3rem;
     color: #e12c2c;
     display: flex;
@@ -23,7 +20,6 @@
   .menu-links .link {
     cursor: pointer;
   }
-  
   .menu-buttons {
     display: flex;
     gap: 0.5em;
@@ -35,16 +31,7 @@
     margin-top: 9em;
   }
   
-  .menu-links {
-    font-size: 1.3rem;
-    color: #e12c2c;
-    display: flex;
-    gap: 2em;
-  }
-  
-  .menu-links .link {
-    cursor: pointer;
-  }
+
   
   .menu-buttons {
     display: flex;
