@@ -20,5 +20,14 @@ export const routes: Routes = [
   {
     path: 'cadastro',
     component:CadastroComponent
+  },
+  {
+    path: 'cadastroreceita',
+    loadComponent: () => import('./cadastro-receita/cadastro-receita.component').then(c => c.CadastroReceitaComponent)
+  },
+  {
+    path: 'favoritos',
+    loadComponent: () => import('./favoritos/favoritos.component').then(m => m.FavoritosComponent)
   }
+  
 ];

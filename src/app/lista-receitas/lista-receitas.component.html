@@ -4,6 +4,7 @@
     <div class="flex-grow-1 text-center">
       <h1 class="titulo2 mb-0">Lista Receitas</h1>
     </div>
+    
     <div class="filtro-emocao ms-auto mt-2 mt-md-0">
       <label for="filtroEmocao" class="form-label me-2">Filtrar por Emoção:</label>
       <select id="filtroEmocao" [(ngModel)]="emocaoSelecionada" class="form-select filtro-select">
@@ -11,35 +12,56 @@
         <option *ngFor="let emocao of emocoesDisponiveis" [value]="emocao">{{ emocao }}</option>
       </select>
     </div>
+    
   </div>
   <div *ngFor="let receita of getReceitasFiltradas(); let i = index" class="card shadow mb-4 mx-auto" style="max-width: 95%;">
-    <!-- Cabeçalho clicável -->
-    <div class="card-header d-flex justify-content-between align-items-center" [ngClass]="{ 'header-ativo': receita.expande }" (click)="receita.expande = !receita.expande" style="cursor: pointer;">
-      <h4 class="mb-0 titulo" [ngClass]="{ 'titulo-ativo': receita.expande }" >{{ receita.nomeReceita }}</h4>
-      <div class="d-flex">
-        <div class=" d-flex">
-          <div class="bg-sentimentos gap-5">
-            <span *ngFor="let sentimento of receita.sentimentoReceita" class="badge bg-sentimentos text-dark me-1">
-            {{ sentimento }}
-          </span>
-        </div>
-          
-        </div>
-        <span class="ps-3">
-          {{ receita.expande ? '▲' : '▼' }}
-        </span>
-      </div>
+  <!-- Cabeçalho clicável -->
+<div class="card-header d-flex justify-content-between align-items-center" [ngClass]="{ 'header-ativo': receita.expande }" (click)="receita.expande = !receita.expande" style="cursor: pointer;">
+  <h4 class="mb-0 titulo" [ngClass]="{ 'titulo-ativo': receita.expande }">{{ receita.nomeReceita }}</h4>
 
-
-
+  <div class="d-flex align-items-center">
+    <!-- Emoções -->
+    <div class="bg-sentimentos me-3">
+      <span *ngFor="let sentimento of receita.sentimentoReceita" class="badge bg-sentimentos text-dark me-1">
+        {{ sentimento }}
+      </span>
     </div>
+
+    <div class="d-flex align-items-center me-3">
+      <span 
+      (click)="favoritar(receita.id); $event.stopPropagation()"
+      style="cursor: pointer;"
+      title="Clique para favoritar/desfavoritar"
+    >
+      <i
+        class="bi me-1"
+        [ngClass]="{
+          'bi-heart-fill text-danger': isFavorited(receita.id),
+          'bi-heart text-secondary': !isFavorited(receita.id)
+        }"
+      ></i>
+    </span>
+    </div>
+    
+    
+
+    <!-- Ícone de expandir -->
+    <span>
+      {{ receita.expande ? '▲' : '▼' }}
+    </span>
+  </div>
+</div>
+
 
     <!-- Corpo que expande -->
     <div class="card-body" [hidden]="!receita.expande">
       <div class="row">
-        <!-- Imagem -->
+        <!-- Imagem + Descrição -->
         <div class="col-md-4">
           <img [src]="receita.imagemReceita" class="img-fluid rounded mb-3" alt="Imagem da Receita" />
+          <div *ngIf="receita.descricaoReceita" class="descricao mt-2">
+            <p><strong>Descrição:</strong> {{ receita.descricaoReceita }}</p>
+          </div>
         </div>
 
         <!-- Tags no canto superior direito -->
@@ -53,11 +75,11 @@
               <h5 class="text-uppercase fw-bold">Ingredientes</h5>
               <div class="descricaotext">
               <ul>
-                <li *ngFor="let preparo of receita.preparos">
-                  <ng-container *ngFor="let ingrediente of preparo.ingredientes">
-                    <li>{{ ingrediente }}</li>
-                  </ng-container>
-                </li>
+                <ng-container *ngFor="let preparo of receita.preparos">
+                  <li *ngFor="let ingrediente of preparo.ingredientes">
+                    {{ ingrediente }}
+                  </li>
+                </ng-container>                
               </ul>
               </div>
             </div>

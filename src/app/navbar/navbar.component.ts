@@ -15,6 +15,7 @@ import { TokenService } from '../services/token.service'; // 👈 NOVO
 export class NavbarComponent {
   rotaAtual: string = '';
   tokenValido: boolean = false;
+  menuAberto = false;
 
   constructor(private router: Router, private tokenService: TokenService) {
     this.router.events.pipe(
@@ -35,11 +36,26 @@ export class NavbarComponent {
 
   logout() {
     this.tokenService.clearToken();
+    localStorage.removeItem('usuario'); // 🔥 limpar também os dados do usuário
     this.tokenValido = false;
     this.router.navigate(['/login']);
   }
+  
 
   esconderBotoes(): boolean {
     return this.rotaAtual.includes('/login') || this.rotaAtual.includes('/cadastro');
+  }
+  abrirMenuLateral() {
+    this.menuAberto = true;
+  }
+  
+  fecharMenuLateral() {
+    this.menuAberto = false;
+  }
+  irParaFavoritos() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/listareceitas'], { state: { modoFavoritos: true } });
+    });
+    this.fecharMenuLateral();
   }
 }

@@ -8,6 +8,7 @@
   <div class="menu-links">
     <span class="link">HOME</span>
     <span class="link" [routerLink]="['/listareceitas']">RECEITAS</span>
+    <span class="link" [routerLink]="['/cadastroreceita']">CADASTRAR RECEITA</span>
   </div>
 
   <!-- Botões à direita → só esconder os botões, não a barra inteira -->
@@ -16,11 +17,26 @@
     <ng-container *ngIf="!esconderBotoes() && !tokenValido">
       <button class="btn btn-white" (click)="irParaLogin()">Login</button>
       <button class="btn btn-red" (click)="irParaCriar()">Cadastrar</button>
+      
     </ng-container>
 
     <!-- Quando logado -->
     <ng-container *ngIf="tokenValido">
-      <button class="btn btn-white" (click)="logout()">Sair</button>
+      <span class="link" (click)="logout()">SAIR</span>
     </ng-container>
+    
+    <!-- Menu hambúrguer (visível só se logado) -->
+    <ng-container *ngIf="tokenValido">
+      <button class="btn btn-outline-secondary" (click)="abrirMenuLateral()">
+        ☰
+      </button>
+            <!-- Menu lateral -->
+      <div class="menu-lateral" [class.aberto]="menuAberto">
+        <span class="closebtn" (click)="fecharMenuLateral()">×</span>
+        <a routerLink="/favoritos" (click)="fecharMenuLateral()">❤️ Favoritos</a>
+        <!-- Aqui você pode adicionar mais itens no futuro -->
+      </div>
+    </ng-container>
+
   </div>
 </div>

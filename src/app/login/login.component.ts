@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TokenService } from '../services/token.service';
 import { NavbarComponent } from "../navbar/navbar.component";
+import { ReceitasService } from '../services/receitas.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private receitasService: ReceitasService
   ) {}
   irParaCadastro() {
     this.router.navigate(['/cadastro']);
@@ -34,7 +36,16 @@ export class LoginComponent {
         const token = res?.access_token;
         if (token) {
           this.tokenService.setToken(token);
-          this.router.navigate(['/listareceitas']);
+
+          this.receitasService.getUserData().subscribe({
+            next: (usuario) => {
+              localStorage.setItem('usuario', JSON.stringify(usuario));
+              this.router.navigate(['/listareceitas']);
+            },
+            error: () => {
+              this.mensagem = 'Erro ao buscar dados do usuário.';
+            }
+          });
         } else {
           this.mensagem = 'Usuário não encontrado.';
           setTimeout(() => {

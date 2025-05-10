@@ -127,3 +127,13 @@
   border-color: #f44336;
   box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
 }
+
+
+.text-danger {
+  color: #dc3545; /* vermelho padrão Bootstrap */
+  font-weight: bold;
+}
+
+.text-secondary {
+  color: #888 !important;
+}

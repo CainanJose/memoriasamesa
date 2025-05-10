@@ -48,7 +48,11 @@
   
   .menu-buttons {
     display: flex;
-    gap: 0.5em;
+    gap: 2em;              /* espaçamento entre os botões igual ao menu central */
+    font-size: 1.3rem;     /* igual ao menu central */
+    color: #e12c2c;        /* mesma cor */
+    align-items: center;   /* alinha verticalmente */
+    margin-left: auto;     /* 👈 garante que os botões vão para a direita dentro do flex container */
   }
   
   .btn {
@@ -72,4 +76,66 @@
     color: white;
     border: 0.5px solid gray;
   }
+  
+
+  .menu-lateral {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 60px;
+    z-index: 999;
+  }
+  
+  .menu-lateral.aberto {
+    width: 250px;
+  }
+  
+  .menu-lateral a {
+    padding: 10px 25px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    font-size: 18px;
+  }
+  
+  .menu-lateral a:hover {
+    background-color: #575757;
+  }
+  
+  .closebtn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+  }
+  
+
+  .link {
+    display: flex;
+    padding: 10px 20px;
+    background-color: #fbe3de;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    color: #e12c2c !important; /* Força a cor igual aos outros */
+    border: none;
+  }
+  
+  
+  .link:hover {
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f8d3cc;
+  }
+  
   

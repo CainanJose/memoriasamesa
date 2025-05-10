@@ -1,0 +1,28 @@
+.card {
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-title {
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 0.95rem;
+  }
+  .modal-backdrop {
+    display: none;
+  }
+  .modal-content {
+    border-radius: 12px;
+  }
+  .modal-body img {
+    max-height: 300px;
+    object-fit: cover;
+    width: 100%;
+  }
+  
