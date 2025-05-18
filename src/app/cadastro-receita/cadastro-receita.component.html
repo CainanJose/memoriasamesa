@@ -47,8 +47,12 @@
         <!-- Ingredientes -->
         <div class="mb-2">
           <label class="form-label">Ingredientes</label>
-          <div *ngFor="let ing of preparo.ingredientes; let j = index" class="d-flex mb-2">
-            <input type="text" class="form-control me-2" [(ngModel)]="preparos[i].ingredientes[j]" name="ingrediente{{i}}_{{j}}" required />
+          <div *ngFor="let ing of preparo.ingredientes; let j = index; trackBy: trackByIndex" class="d-flex mb-2">
+            <input type="text" class="form-control me-2"
+                  [(ngModel)]="preparos[i].ingredientes[j]"
+                  name="ingrediente_{{i}}_{{j}}"
+                  [ngModelOptions]="{ standalone: true }"
+                  required />
             <button type="button" class="btn btn-outline-danger" (click)="removerIngrediente(i, j)">🗑️</button>
           </div>
           <button type="button" class="btn btn-outline-primary btn-sm mt-1" (click)="adicionarIngrediente(i)">+ Ingrediente</button>

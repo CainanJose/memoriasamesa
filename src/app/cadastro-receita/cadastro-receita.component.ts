@@ -152,4 +152,7 @@ export class CadastroReceitaComponent implements OnInit {
     this.imagemReceita = '';
     this.imagemPreview = '';
   }
+  trackByIndex(index: number, item: any): number {
+  return index;
+}
 }

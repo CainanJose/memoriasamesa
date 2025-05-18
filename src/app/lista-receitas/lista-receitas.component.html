@@ -58,7 +58,8 @@
       <div class="row">
         <!-- Imagem + Descrição -->
         <div class="col-md-4">
-          <img [src]="receita.imagemReceita" class="img-fluid rounded mb-3" alt="Imagem da Receita" />
+          <!--<img [src]="receita.imagemReceita" class="img-fluid rounded mb-3" alt="Imagem da Receita" /> -->
+          <img [src]="receita.imagemReceita"class="img-fixa-receita"alt="Imagem da Receita"/>
           <div *ngIf="receita.descricaoReceita" class="descricao mt-2">
             <p><strong>Descrição:</strong> {{ receita.descricaoReceita }}</p>
           </div>

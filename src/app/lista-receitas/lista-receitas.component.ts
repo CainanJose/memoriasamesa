@@ -108,4 +108,6 @@ export class ListaReceitasComponent implements OnInit {
   isFavorited(receitaId: number): boolean {
     return this.usuario?.favRecipesID?.includes(receitaId) ?? false;
   }
+
+  
 }
