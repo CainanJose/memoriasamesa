@@ -143,3 +143,44 @@
     gap: 1em;
   }
 }
+
+/* Menu lateral de favoritos (ícone de perfil) */
+.menu-lateral-opcoes {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  z-index: 1000;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-lateral-opcoes.aberto {
+  width: 250px;
+}
+
+.menu-lateral-opcoes a {
+  padding: 12px 24px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #e12c2c;
+  display: block;
+  transition: 0.3s;
+}
+
+.menu-lateral-opcoes a:hover {
+  background-color: #ffe5e0;
+}
+
+.menu-lateral-opcoes .closebtn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #e12c2c;
+}

@@ -53,9 +53,7 @@ export class NavbarComponent {
     this.menuAberto = false;
   }
   irParaFavoritos() {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/listareceitas'], { state: { modoFavoritos: true } });
-    });
+    this.router.navigate(['/favoritos']);
     this.fecharMenuLateral();
   }
   menuHamburguerAberto = false;

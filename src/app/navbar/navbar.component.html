@@ -24,8 +24,19 @@
 
     <!-- Quando logado -->
     <ng-container *ngIf="tokenValido">
-      <span class="link desktop-only" (click)="logout()">SAIR</span>
+
+      <!-- Ícone que abre o menu lateral de favoritos -->
+      <i class="bi bi-person-circle desktop-only"
+         (click)="abrirMenuLateral()"
+         style="font-size: 1.7rem; cursor: pointer;"></i>
     </ng-container>
+
+    <!-- Menu lateral de favoritos (desktop) -->
+    <div class="menu-lateral-opcoes" [class.aberto]="menuAberto">
+      <span class="closebtn" (click)="fecharMenuLateral()">×</span>
+      <a (click)="irParaFavoritos()">❤️ Favoritas</a>
+      <a (click)="logout()">🚪 Sair</a>
+    </div>
 
     <!-- Menu lateral para mobile -->
     <div class="menu-lateral" [class.aberto]="menuHamburguerAberto">
@@ -34,13 +45,9 @@
       <a routerLink="/listareceitas" (click)="fecharMenuHamburguer()">📖 Receitas</a>
       <a routerLink="/cadastroreceita" (click)="fecharMenuHamburguer()">➕ Nova Receita</a>
 
-      <!-- Botões de login ou sair no menu mobile -->
       <ng-container *ngIf="!tokenValido">
         <a (click)="irParaLogin()">🔐 Login</a>
         <a (click)="irParaCriar()">📝 Cadastrar</a>
-      </ng-container>
-      <ng-container *ngIf="tokenValido">
-        <a (click)="logout()">🚪 Sair</a>
       </ng-container>
     </div>
   </div>
