@@ -86,6 +86,6 @@ ng serve
 
 Desenvolvido por **Cainã José**
 Estudante de Engenharia da Computação
-[LinkedIn](https://linkedin.com)
+[LinkedIn](https://www.linkedin.com/in/cain%C3%A3-jose/)
 
 ---
