@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { TokenService } from '../services/token.service';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { ReceitasService } from '../services/receitas.service';
+import { UsuarioService } from '../services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent {
     private authService: AuthService,
     private tokenService: TokenService,
     private router: Router,
-    private receitasService: ReceitasService
+    private usuarioService: UsuarioService
   ) {}
   irParaCadastro() {
     this.router.navigate(['/cadastro']);
@@ -34,12 +35,22 @@ export class LoginComponent {
       next: (res) => {
         console.log('🧪 RESPOSTA DO BACKEND:', res);
         const token = res?.access_token;
+
         if (token) {
           this.tokenService.setToken(token);
 
-          this.receitasService.getUserData().subscribe({
+          // 🔄 Buscar dados do usuário
+          this.usuarioService.getUserData().subscribe({
             next: (usuario) => {
+              console.log('👤 Dados recebidos do usuário:', usuario);
               localStorage.setItem('usuario', JSON.stringify(usuario));
+              if (usuario.id) {
+                localStorage.setItem('userId', usuario.id);
+              }
+              if (usuario.username) {
+                localStorage.setItem('username', usuario.username);
+              }
+
               this.router.navigate(['/listareceitas']);
             },
             error: () => {
@@ -62,4 +73,5 @@ export class LoginComponent {
       }
     });
   }
+
 }

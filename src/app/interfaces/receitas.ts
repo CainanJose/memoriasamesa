@@ -15,4 +15,5 @@ export interface Receita {
   observacoesUsuario?: string;
   autorId?: string;
   qtdAvaliacao: number;
+  favorited_by?: string[];
 }

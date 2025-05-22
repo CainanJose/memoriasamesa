@@ -10,13 +10,15 @@ import { Usuario } from '../interfaces/usuario'; // novo import
   standalone: true,
   imports: [CommonModule, FormsModule, NavbarComponent],
   templateUrl: './lista-receitas.component.html',
-  styleUrl: './lista-receitas.component.css'
+  styleUrls: ['./lista-receitas.component.css']
+
 })
 export class ListaReceitasComponent implements OnInit {
   receitas: any[] = [];
   emocaoSelecionada: string = '';
   emocoesDisponiveis: string[] = [];
   modoFavoritos = false;
+  favoritedReceitasIds: number[] = [];
   
 
   usuario: Usuario | null = null; // novo campo
@@ -24,22 +26,22 @@ export class ListaReceitasComponent implements OnInit {
   constructor(private receitasService: ReceitasService) {}
 
   ngOnInit(): void {
-    const state = history.state;
-    this.modoFavoritos = state?.modoFavoritos ?? false;
-  
-    // Carrega receitas SEMPRE
-    this.carregarReceitas();
-  
-    // Tenta carregar o usuário (se der erro, apenas ignora)
-    this.receitasService.getUserData().subscribe({
-      next: (userData) => {
-        this.usuario = userData;
-        localStorage.setItem('usuario', JSON.stringify(userData));
-      },
-      error: (erro) => {
-        console.warn('⚠️ Não foi possível carregar o usuário:', erro);
-      }
-    });
+    this.carregarReceitas(); // ✅ sempre carrega as receitas
+
+    const username = localStorage.getItem('username');
+    if (username) {
+      this.receitasService.getReceitasFavoritasDoUsuario(username).subscribe({
+        next: (res) => {
+          this.favoritedReceitasIds = res.favorited_recipes.map((r: any) => r.id);
+          console.log('🌟 Favoritas carregadas:', this.favoritedReceitasIds);
+        },
+        error: (err) => {
+          console.error('❌ Erro ao buscar receitas favorited:', err);
+        }
+      });
+    } else {
+      console.warn('⚠️ Username não encontrado no localStorage. Não será possível buscar favoritas.');
+    }
   }
   
   carregarReceitas(): void {
@@ -60,38 +62,36 @@ export class ListaReceitasComponent implements OnInit {
   
   
      
-  favoritar(receitaId: number): void {
-    if (!this.usuario) return;
-    const jaFavoritada = this.usuario.favRecipesID.includes(receitaId);
-    const acao = jaFavoritada
-      ? this.receitasService.removerFavorito(receitaId)
-      : this.receitasService.favoritarReceita(receitaId);
-    
-    
-  
-    acao.subscribe({
-      next: () => {
-        if (jaFavoritada) {
-          this.usuario!.favRecipesID = this.usuario!.favRecipesID.filter(id => id !== receitaId);
-          console.log('teste1');
-        } else {
-          this.usuario!.favRecipesID = [...this.usuario!.favRecipesID, receitaId];
-          console.log('teste2');
-        }
-      },
-      error: (erro) => {
-        console.error('❌ Erro ao alternar favorito:', erro);
+favoritar(receitaId: number): void {
+  const jaFavoritada = this.favoritedReceitasIds.includes(receitaId);
+
+  const acao = jaFavoritada
+    ? this.receitasService.removerFavorito(receitaId)
+    : this.receitasService.favoritarReceita(receitaId);
+
+  acao.subscribe({
+    next: () => {
+      console.log('✅ Requisição de favorito OK');
+
+      if (jaFavoritada) {
+        this.favoritedReceitasIds = this.favoritedReceitasIds.filter(id => id !== receitaId);
+      } else {
+        this.favoritedReceitasIds = [...this.favoritedReceitasIds, receitaId];
       }
-    });
-  }
-  
-  
+    },
+    error: (erro) => {
+      console.error('❌ Erro ao alternar favorito:', erro);
+    }
+  });
+}
+
+
   
   getReceitasFiltradas(): any[] {
     let filtradas = this.receitas;
   
-    if (this.modoFavoritos && this.usuario?.favRecipesID) {
-      filtradas = filtradas.filter(r => this.usuario!.favRecipesID.includes(r.id));
+    if (this.modoFavoritos) {
+      filtradas = filtradas.filter(r => this.favoritedReceitasIds.includes(r.id));
     }
   
     if (this.emocaoSelecionada) {
@@ -106,8 +106,7 @@ export class ListaReceitasComponent implements OnInit {
 
   // 🔥 NOVO: verifica se a receita está favoritada
   isFavorited(receitaId: number): boolean {
-    return this.usuario?.favRecipesID?.includes(receitaId) ?? false;
+    return this.favoritedReceitasIds.includes(receitaId);
   }
-
   
 }

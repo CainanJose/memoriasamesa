@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Receita } from '../interfaces/receitas';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -17,30 +16,30 @@ export class ReceitasService {
     return this.http.get(this.apiUrl);
   }
 
-  cadastrarReceita(receita: any) {
+  cadastrarReceita(receita: any): Observable<any> {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-  
-    return this.http.post('http://localhost:8000/receitas', receita, { headers });
+
+    return this.http.post(this.apiUrl, receita, { headers });
   }
-  
+
   favoritarReceita(id: number): Observable<any> {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post(`http://localhost:8000/users/favorite/${id}`, {}, { headers });
-  }  
+    return this.http.post(`${this.apiUrl}/${id}/favorite`, {}, { headers });
+  }
+
   removerFavorito(id: number): Observable<any> {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete(`http://localhost:8000/users/favorite/${id}`, { headers });
+    return this.http.delete(`${this.apiUrl}/${id}/favorite`, { headers });
   }
-  
-  getUserData(): Observable<any> {
+
+  getReceitasFavoritasDoUsuario(username: string): Observable<any> {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get('http://localhost:8000/users/data', { headers });
+    return this.http.get(`${this.apiUrl}/user/${username}/data`, { headers });
   }
-  
 }

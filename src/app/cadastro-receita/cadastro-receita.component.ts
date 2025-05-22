@@ -76,24 +76,31 @@ export class CadastroReceitaComponent implements OnInit {
     if (this.sentimentoReceita.length === 0) {
       camposInvalidos.push('Sentimentos');
     }
-  
+
     if (!this.descricaoReceita.trim()) {
       camposInvalidos.push('História da Receita');
     }
-  
+
     const etapasInvalidas = this.preparos.some(etapa =>
       !etapa.modoPreparo.trim() || etapa.ingredientes.some(i => !i.trim())
     );
-  
+
     if (etapasInvalidas) {
       camposInvalidos.push('Etapas de Preparo');
     }
-  
+
     if (camposInvalidos.length > 0) {
       alert(`Preencha corretamente os campos obrigatórios: ${camposInvalidos.join(', ')}`);
       return;
     }
-  
+
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      alert('⚠️ Não foi possível identificar o usuário logado. Faça login novamente.');
+      this.router.navigate(['/login']);
+      return;
+    }
+
     // Continua com o envio se passou na validação
     const receita = {
       nomeReceita: this.nomeReceita,
@@ -103,11 +110,12 @@ export class CadastroReceitaComponent implements OnInit {
       tempoPreparo: this.tempoPreparo,
       imagemReceita: this.imagemReceita,
       qtdeFinal: this.qtdeFinal,
-      observacoesUsuario: this.observacoesUsuario
+      observacoesUsuario: this.observacoesUsuario,
+      autorId: userId // 👈 AQUI está o campo novo
     };
-  
+
     console.log('📦 Receita montada para envio:', receita);
-  
+
     this.receitasService.cadastrarReceita(receita).subscribe({
       next: () => {
         alert('Receita cadastrada com sucesso!');
@@ -119,6 +127,7 @@ export class CadastroReceitaComponent implements OnInit {
       }
     });
   }
+
   
   
   adicionarSentimento() {

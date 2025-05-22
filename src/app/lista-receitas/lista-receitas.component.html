@@ -28,19 +28,21 @@
     </div>
 
     <div class="d-flex align-items-center me-3">
-      <span 
-      (click)="favoritar(receita.id); $event.stopPropagation()"
-      style="cursor: pointer;"
-      title="Clique para favoritar/desfavoritar"
-    >
-      <i
-        class="bi me-1"
-        [ngClass]="{
-          'bi-heart-fill text-danger': isFavorited(receita.id),
-          'bi-heart text-secondary': !isFavorited(receita.id)
-        }"
-      ></i>
-    </span>
+      <button
+        type="button"
+        class="btn btn-link p-0"
+        (click)="favoritar(receita.id); $event.stopPropagation()"
+        title="Clique para favoritar/desfavoritar"
+      >
+        <i
+          class="bi me-1"
+          [ngClass]="{
+            'bi-heart-fill text-danger': isFavorited(receita.id),
+            'bi-heart text-secondary': !isFavorited(receita.id)
+          }"
+        ></i>
+      </button>
+
     </div>
     
     
