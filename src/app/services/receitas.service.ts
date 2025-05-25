@@ -8,7 +8,7 @@ import { TokenService } from './token.service';
 })
 export class ReceitasService {
 
-  private apiUrl = 'http://localhost:8000/receitas';
+  private apiUrl = 'https://memorias-api-fastapi-hjd7ataje3h9epft.brazilsouth-01.azurewebsites.net/receitas';
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 

@@ -8,14 +8,14 @@ import { DadosUsuario } from '../interfaces/dadosUsuario'; // ✅ Tipagem corret
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:8000/users';
+  private apiUrl = 'https://memorias-api-fastapi-hjd7ataje3h9epft.brazilsouth-01.azurewebsites.net/users';
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   getUserData(): Observable<any> {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`http://localhost:8000/users/data`, { headers });
+    return this.http.get(`https://memorias-api-fastapi-hjd7ataje3h9epft.brazilsouth-01.azurewebsites.net/users/data`, { headers });
   }
   cadastrar(dados: any): Observable<any> {
     return this.http.post(this.apiUrl, dados);
@@ -25,6 +25,6 @@ export class UsuarioService {
   getDadosUsuario(username: string): Observable<DadosUsuario> {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<DadosUsuario>(`http://localhost:8000/receitas/user/${username}/data`, { headers });
+    return this.http.get<DadosUsuario>(`https://memorias-api-fastapi-hjd7ataje3h9epft.brazilsouth-01.azurewebsites.net/receitas/user/${username}/data`, { headers });
   }
 }
