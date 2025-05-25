@@ -55,7 +55,7 @@ export class FavoritosComponent implements OnInit {
     if (!this.token) return;
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    this.http.delete(`http://localhost:8000/receitas/${receitaId}/favorite`, { headers }).subscribe({
+    this.http.delete(`http://https://memorias-api-fastapi-hjd7ataje3h9epft.brazilsouth-01.azurewebsites.net/receitas/${receitaId}/favorite`, { headers }).subscribe({
       next: () => {
         this.receitasFavoritas = this.receitasFavoritas.filter(r => r.id !== receitaId);
         this.fecharModal();
