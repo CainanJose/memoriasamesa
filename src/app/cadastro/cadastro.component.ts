@@ -46,7 +46,6 @@ export class CadastroComponent {
         password: this.senha
       };
 
-      console.log('Enviando dados para o backend:', dados);
       this.usuarioService.cadastrar(dados).subscribe({
         next: () => {
           this.router.navigate(['/login'], { state: { sucessoCadastro: true } });

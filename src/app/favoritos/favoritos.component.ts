@@ -35,7 +35,6 @@ export class FavoritosComponent implements OnInit {
     this.usuarioService.getDadosUsuario(username).subscribe({
       next: (res: DadosUsuario) => {
         this.receitasFavoritas = res.favorited_recipes || [];
-        console.log('🌟 Favoritas carregadas:', this.receitasFavoritas);
       },
       error: (err) => {
         console.error('❌ Erro ao buscar dados do usuário:', err);

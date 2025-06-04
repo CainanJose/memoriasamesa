@@ -33,7 +33,7 @@ export class LoginComponent {
   login() {
     this.authService.login(this.email, this.password).subscribe({
       next: (res) => {
-        console.log('🧪 RESPOSTA DO BACKEND:', res);
+
         const token = res?.access_token;
 
         if (token) {
@@ -42,7 +42,7 @@ export class LoginComponent {
           // 🔄 Buscar dados do usuário
           this.usuarioService.getUserData().subscribe({
             next: (usuario) => {
-              console.log('👤 Dados recebidos do usuário:', usuario);
+
               localStorage.setItem('usuario', JSON.stringify(usuario));
               if (usuario.id) {
                 localStorage.setItem('userId', usuario.id);

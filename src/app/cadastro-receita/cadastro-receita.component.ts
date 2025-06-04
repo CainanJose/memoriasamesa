@@ -57,7 +57,6 @@ export class CadastroReceitaComponent implements OnInit {
       reader.onload = () => {
         this.imagemReceita = reader.result as string;
         this.imagemPreview = this.imagemReceita; // 👈 Aqui é o preview
-        console.log('✅ Imagem convertida para Base64:', this.imagemReceita);
       };
       reader.readAsDataURL(file);
     } else {
@@ -114,7 +113,7 @@ export class CadastroReceitaComponent implements OnInit {
       autorId: userId // 👈 AQUI está o campo novo
     };
 
-    console.log('📦 Receita montada para envio:', receita);
+
 
     this.receitasService.cadastrarReceita(receita).subscribe({
       next: () => {
@@ -134,7 +133,7 @@ export class CadastroReceitaComponent implements OnInit {
     const novo = this.sentimentoSelecionado.trim();
     if (novo && !this.sentimentoReceita.includes(novo)) {
       this.sentimentoReceita.push(novo);
-      console.log('🎯 Sentimentos adicionados:', this.sentimentoReceita);
+
       this.sentimentoSelecionado = '';
     }
   }

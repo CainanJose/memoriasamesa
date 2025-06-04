@@ -33,7 +33,6 @@ export class ListaReceitasComponent implements OnInit {
       this.receitasService.getReceitasFavoritasDoUsuario(username).subscribe({
         next: (res) => {
           this.favoritedReceitasIds = res.favorited_recipes.map((r: any) => r.id);
-          console.log('🌟 Favoritas carregadas:', this.favoritedReceitasIds);
         },
         error: (err) => {
           console.error('❌ Erro ao buscar receitas favorited:', err);
@@ -48,7 +47,6 @@ export class ListaReceitasComponent implements OnInit {
     this.receitasService.getReceitas().subscribe({
       next: (dados) => {
         this.receitas = Object.values(dados);
-        console.log('🧠 Receitas carregadas:', this.receitas);
   
         this.emocoesDisponiveis = [...new Set(
           this.receitas.flatMap(r => r.sentimentoReceita || [])
@@ -71,7 +69,6 @@ favoritar(receitaId: number): void {
 
   acao.subscribe({
     next: () => {
-      console.log('✅ Requisição de favorito OK');
 
       if (jaFavoritada) {
         this.favoritedReceitasIds = this.favoritedReceitasIds.filter(id => id !== receitaId);
