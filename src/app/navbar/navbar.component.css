@@ -170,6 +170,7 @@
   color: #e12c2c;
   display: block;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .menu-lateral-opcoes a:hover {
